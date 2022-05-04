@@ -62,14 +62,18 @@ const GameLogic = (board, player1, player2) => {
         const gamePiece = currPlayer.getGamePiece();
         if (checkValidPlay(row, column)) {
             board.updateBoard(row, column, gamePiece);
+            DisplayController.renderPiece(row, column, board);
             if (checkGameOver(row, column)) {
                 winner = currPlayer.getGamePiece()
                 console.log(`Game over ${winner} wins!`);
+                DisplayController.displayWinner(currPlayer);
                 //TODO: display winner;
-            } else if (checkTie) {
+            } else if (checkTie()) {
                 console.log("Tie!");
+                DisplayController.displayTie();
             } else {
                 switchPlayer();
+                DisplayController.renderCurrPlayer(currPlayer);
             }
         } else {
             console.log('Error');
@@ -128,7 +132,8 @@ const GameLogic = (board, player1, player2) => {
     };
 
     // Check tie if board is filled
-    const checkTie = (currBoard) => { 
+    const checkTie = () => { 
+        const currBoard = board.getBoard();
         for (let r = 0; r < currBoard.length; r++) {
             for (let c = 0; c < currBoard[0].length; c++) {
                 if (currBoard[r][c] === '') {
@@ -153,14 +158,64 @@ const GameLogic = (board, player1, player2) => {
 
 // Module: one Display Board
 const DisplayController = (() => {
+    const player1 = Player("X");
+    const player2 = Player("O");
+    const logic = GameLogic(GameBoard, player1, player2);
+    
+    const displayWinner = (currPlayer) => {
+        let gameOver = document.getElementsByClassName("gameOver")[0];
+        gameOver.innerHTML = `Player ${currPlayer.getGamePiece()} has won! Refresh to play again.`;
+        currPlayerDisplay = document.getElementById("playerTurn");
+        currPlayerDisplay.textContent = '';
+    };
+
+    const displayTie = () => {
+        let gameOver = document.getElementsByClassName("gameOver")[0];
+        gameOver.innerHTML = `It's a Tie! Refresh to play again.`;
+        currPlayerDisplay = document.getElementById("playerTurn");
+        currPlayerDisplay.textContent = '';
+    };
+
+    const setup = () => {
+        
+    };
+
+    const renderPiece = (row, col, board) => {
+        let gamePiece = board.getBoard()[row][col];
+        let grid = document.getElementsByClassName("square");
+        let square = grid[row * 3 + col];
+        square.innerHTML = `<span>${gamePiece}</span>`;
+    }
+
+    const renderCurrPlayer = (player) => {
+        currPlayerDisplay = document.getElementById("playerTurn");
+        currPlayerDisplay.textContent = `Player ${player.getGamePiece()}'s Turn!`;
+    }
+
+    const attachButtons = () => {
+        grid = document.getElementsByClassName("square");
+        for (let i = 0; i < grid.length; i++) {
+            square = grid[i];
+            square.addEventListener('click', () => {
+                let row =  Math.floor(i / 3);
+                let col = i % 3;
+				console.log([i, Math.floor(i / 3), i % 3]);
+                logic.play(row, col);
+                console.log(GameBoard.getBoard());
+			});
+        }
+    }
+
     const renderBoard = () => {
 
     };
-    const displayWinner = () => {
 
-    };
     return {
-
+        attachButtons,
+        renderPiece,
+        renderCurrPlayer,
+        displayTie,
+        displayWinner,
     };
 })();
 
@@ -185,4 +240,5 @@ function simulate() {
     logic.play(2,2);
 }
 
-simulate()
+DisplayController.attachButtons()
+// simulate()

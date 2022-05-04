@@ -1,0 +1,120 @@
+:root {
+    --mainFont: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* UTILS */
+
+body {
+    background-color: aliceblue;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 8px;
+    border: 2px solid #777;
+    background-color: aliceblue;
+    /* transition: filter 0.15s ease-in-out; */
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}
+
+
+/* HEADER */
+
+header {
+    text-align: center;
+    font-size: 100px;
+}
+
+/* SETUP */
+.setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    gap: 10vh;
+    display: none;
+}
+
+.players {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    gap: 20vw;
+}
+
+.choosePlayer {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color: lightslategray;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.choosePlayer .insertName {
+    font-size: 25px;
+    text-align: center;
+    font-family: var(--mainFont);
+}
+
+.choosePlayer h2 {
+    font-family: var(--mainFont);
+    font-size: 30px;
+}
+
+/* GAMEOVER */
+.gameOver {
+    font-family: var(--mainFont);
+    font-size: 30px;
+    text-align: center;
+}
+
+/* GAMEBOARD */
+
+.displayTurn {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.gameBoard {
+	display: grid;
+	height: 300px;
+	width: 300px;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+	margin: 15vh auto;
+	justify-items: center;
+	outline: 3px solid aliceblue;
+	outline-offset: -1px;
+}
+
+.square {
+	display: flex;
+	text-align: center;
+	font-family: var(--mainFont);
+	font-size: 3rem;
+	height: 100%;
+	width: 100%;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.square span {
+    margin: auto;
+    text-align: center;
+}
+
+.square:hover {
+	background-color: rgba(220, 220, 220, 0.5);
+}
+

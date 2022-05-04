@@ -1,12 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Tic Tac Toe</title>
+            <link rel="stylesheet" href="./reset.css">
+            <link rel="stylesheet" href="./style.css">
+        </head>
+        <body>
+            <header>
+                <h1>Tic-Tac-Toe</h1>
+            </header>
+            <div class="setup">
+                <div class="players">
+                    <div class="choosePlayer">
+                        <h2>Player 1 (X)</h2>
+                        <form class="insertName">
+                            <label>Name: </label>
+                            <input 
+                            class="name" 
+                            type="text" 
+                            id="name1" 
+                            placeholder="Jane Doe" 
+                            maxlength="200"
+                            required
+                            >
+                        </form>
+                    </div>
+                    <div class="choosePlayer">
+                        <h2>Player 2 (O)</h2>
+                        <form class="insertName">
+                            <label>Name: </label>
+                            <input 
+                            class="name" 
+                            type="text" 
+                            id="name2" 
+                            placeholder="John Doe" 
+                            maxlength="200"
+                            required
+                            >
+                        </form>
+                    </div>
+                </div>
+                <div class="btnContainer">
+                    <button class="btn" id="startGameBtn">Start Game</button>
+                </div>
+            </div>
+            <div class="displayTurn"> 
+                <h1 id="playerTurn">
+                    Player X's Turn!
+                </h1>
+            </div>
+            <div class="gameOver"></div>
+            <div class="gameBoard">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+
+            </div>
+            
+            <script src="./game.js"></script>
+        </body>
+    </html>
